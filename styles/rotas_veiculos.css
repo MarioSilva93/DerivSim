@@ -1,0 +1,58 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eef1f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.window {
+  width: 1350px;
+  height: 750px;
+  background-color: white;
+  border: 2px solid #444;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.window-header {
+  background-color: #0078d7;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.window-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.window-body {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.vehicle-card {
+  border: 1px solid #ccc;
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 8px;
+}
+.vehicle-card button {
+  margin-right: 10px;
+  margin-top: 5px;
+}

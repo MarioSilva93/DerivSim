@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestão da Empresa</title>
+  <link rel="stylesheet" href="../styles/gestao.css">
+</head>
+<body>
+  <div class="window">
+    <div class="window-header">
+      <span>Gestão da Empresa</span>
+      <button onclick="closeApp('gestao')">✕</button>
+    </div>
+    <div class="window-body">
+      <div class="panel" id="condutores">
+        <h3>Condutores</h3>
+        <ul></ul>
+      </div>
+      <div class="panel" id="armazem">
+        <h3>Armazém</h3>
+        <ul></ul>
+      </div>
+      <div class="panel" id="veiculos">
+        <h3>Veículos Disponíveis</h3>
+        <ul></ul>
+      </div>
+      <div class="panel" id="financas">
+        <h3>Gestão Financeira</h3>
+        <p><strong>Saldo:</strong> €<span id="saldo">0</span></p>
+        <p><strong>Ganhos:</strong> €<span id="ganhos">0</span></p>
+        <p><strong>Despesas:</strong> €<span id="despesas">0</span></p>
+      </div>
+    </div>
+  </div>
+  <script src="../scripts/gestao.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestão de Encomendas</title>
+  <link rel="stylesheet" href="../styles/rotas_encomendas.css">
+</head>
+<body>
+  <div class="window">
+    <div class="window-header">
+      <span>Gestão de Encomendas</span>
+      <button onclick="closeApp('encomendas')">✕</button>
+    </div>
+    <div class="window-body">
+      <div class="drag-drop-container">
+        <div class="encomendas">
+          <h3>Encomendas Pendentes</h3>
+          <ul id="encomendas-list" class="droppable"></ul>
+        </div>
+        <div class="paletes">
+          <h3>Paletes</h3>
+          <button onclick="criarPalete()">➕ Criar Palete</button>
+          <div id="paletes-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../scripts/rotas_encomendas.js"></script>
+</body>
+</html>

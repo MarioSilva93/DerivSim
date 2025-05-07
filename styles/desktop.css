@@ -1,0 +1,63 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../assets/images/desktop_background.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.desktop {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 30px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}
+.corner-buttons {
+  position: fixed;
+  bottom: 64px;
+  right: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.corner-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.corner-icon img {
+  width: 64px;
+  height: 64px;
+}
+
+.corner-icon:hover {
+  transform: scale(1.1);
+}

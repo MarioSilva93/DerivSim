@@ -1,0 +1,84 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eef1f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.window {
+  width: 1100px;
+  height: 650px;
+  background-color: white;
+  border: 2px solid #444;
+  display: flex;
+  flex-direction: column;
+}
+
+.window-header {
+  background-color: #0078d7;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.window-body {
+  flex: 1;
+  display: flex;
+  padding: 15px;
+  gap: 20px;
+}
+
+.drag-drop-container {
+  display: flex;
+  flex: 1;
+  gap: 30px;
+}
+
+.encomendas, .paletes {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f9f9f9;
+  overflow-y: auto;
+  max-height: 530px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.draggable {
+  border: 1px solid #999;
+  padding: 8px;
+  background: #fff;
+  margin-bottom: 5px;
+  cursor: grab;
+}
+
+.palete {
+  border: 2px dashed #666;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.excesso {
+  background-color: #ffd6d6 !important;
+  border-color: red !important;
+}

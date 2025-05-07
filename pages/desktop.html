@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Desktop</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/desktop.css">
+</head>
+<body>
+  <div class="desktop">
+    <div class="icon" onclick="openApp('email')">
+      <img src="../assets/icons/email.png" alt="Email">
+      <span>Email</span>
+    </div>
+    <div class="icon" onclick="openApp('gestaoderotas')">
+      <img src="../assets/icons/gestao.png" alt="Gestão">
+      <span>Gestão de Rotas</span>
+    </div>
+    <div class="icon" onclick="openApp('gps')">
+      <img src="../assets/icons/gps.png" alt="GPS">
+      <span>GPS</span>
+    </div>
+    <div class="icon" onclick="openApp('loja')">
+      <img src="../assets/icons/loja.png" alt="Loja">
+      <span>Loja</span>
+    </div>
+    <div class="icon" onclick="openApp('trabalhadores')">
+      <img src="../assets/icons/trabalhadores.png" alt="Trabalhadores">
+      <span>Agencia de Trabalho</span>
+    </div>
+    <div class="icon" onclick="openApp('gestaodaempresa')">
+      <img src="../assets/icons/gestaodaempresa.png" alt="Gestão da Empresa">
+      <span>Gestão da Empresa</span>
+    </div>
+        
+  </div>
+  
+  <div class="corner-buttons">
+    <div class="corner-icon" onclick="saveGame()" title="Guardar Jogo">
+      <img src="../assets/icons/guardar.png" alt="Guardar">
+    </div>
+    <div class="corner-icon" onclick="logout()" title="Sair">
+      <img src="../assets/icons/sair.png" alt="Sair">
+    </div>
+  </div>
+  
+
+  <div id="windows-container"></div>
+
+  <script src="../scripts/desktop.js"></script>
+</body>
+</html>
