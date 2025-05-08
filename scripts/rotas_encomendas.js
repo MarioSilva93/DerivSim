@@ -1,3 +1,5 @@
+console.log("Script rotas_encomendas.js carregado com sucesso!");
+
 const nomes = ["Carlos", "Sofia", "Miguel", "Anna", "Luc", "João", "Emma", "Pierre", "Marta", "Hans"];
 const moradas = [
   { rua: "Willikonerstrasse 40", cidade: "Oetwil am See", pais: "Suíça" },
@@ -125,9 +127,8 @@ window.onload = function () {
   encomendas = JSON.parse(localStorage.getItem("encomendasPendentes")) || [];
   if (encomendas.length === 0) {
     gerarEncomendas();
-    localStorage.setItem("encomendasPendentes", JSON.stringify(encomendas)); // Atualiza o localStorage
-  } else {
-    renderEncomendas();
+    localStorage.setItem("encomendasPendentes", JSON.stringify(encomendas));
   }
+  renderEncomendas();
   restaurarPaletes();
 };
