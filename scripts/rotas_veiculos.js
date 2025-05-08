@@ -17,22 +17,22 @@ function atualizarEstado(veiculos) {
     `;
     lista.appendChild(item);
   });
-  localStorage.setItem("meusVeiculos", JSON.stringify(veiculos));
+  IndexedDB.setItem("meusVeiculos", JSON.stringify(veiculos));
 }
 
 function agendar(index) {
-  const veiculos = JSON.parse(localStorage.getItem("meusVeiculos")) || [];
+  const veiculos = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
   veiculos[index].maintenance = 100;
   alert("Manutenção agendada para: " + veiculos[index].model);
   atualizarEstado(veiculos);
 }
 
 function abastecer(index) {
-  const veiculos = JSON.parse(localStorage.getItem("meusVeiculos")) || [];
+  const veiculos = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
   veiculos[index].fuel = 100;
   alert("Pedido de abastecimento enviado para: " + veiculos[index].model);
   atualizarEstado(veiculos);
 }
 
-const veiculos = JSON.parse(localStorage.getItem("meusVeiculos")) || [];
+const veiculos = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
 atualizarEstado(veiculos);

@@ -1,6 +1,7 @@
 console.log("Script rotas_encomendas.js carregado com sucesso!");
 
 const nomes = ["Carlos", "Sofia", "Miguel", "Anna", "Luc", "João", "Emma", "Pierre", "Marta", "Hans"];
+const peso = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const moradas = [
   { rua: "Willikonerstrasse 40", cidade: "Oetwil am See", pais: "Suíça" },
   { rua: "Avenida da Liberdade 210", cidade: "Lisboa", pais: "Portugal" },
@@ -10,31 +11,56 @@ const moradas = [
   { rua: "Via Roma 88", cidade: "Milão", pais: "Itália" }
 ];
 
+console.log("Variável nomes:", nomes);
+
 let encomendas = [];
 let paletes = [];
 
 function gerarEncomendas(qtd = 20) {
+  console.log("Função gerarEncomendas chamada");
   encomendas = [];
   for (let i = 0; i < qtd; i++) {
     const nome = nomes[Math.floor(Math.random() * nomes.length)];
     const morada = moradas[Math.floor(Math.random() * moradas.length)];
     const peso = Math.floor(Math.random() * 25) + 1;
-    encomendas.push({
+
+    console.log("Nome:", nome, "Morada:", morada, "Peso:", peso);
+
+    const encomenda = {
       id: "e" + i,
       cliente: nome,
       rua: morada.rua,
       cidade: morada.cidade,
       pais: morada.pais,
       peso
-    });
+    };
+
+    console.log("Encomenda gerada:", encomenda);
+    encomendas.push(encomenda);
   }
-  localStorage.setItem("encomendasPendentes", JSON.stringify(encomendas));
+
+  console.log("Encomendas antes de salvar no IndexedDB:", encomendas);
+  IndexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
+  console.log("Encomendas salvas no IndexedDB:", IndexedDB.getItem("encomendasPendentes"));
 }
 
 function renderEncomendas() {
+  console.log("Função renderEncomendas chamada");
   const lista = document.getElementById("encomendas-list");
+  if (!lista) {
+    console.error("Elemento #encomendas-list não encontrado no DOM!");
+    return;
+  }
+
+  // Limpar a lista antes de renderizar
   lista.innerHTML = "";
+  console.log("Lista de encomendas limpa.");
+
+  // Renderizar cada encomenda
   encomendas.forEach((enc) => {
+    console.log("Renderizando encomenda:", enc);
+
+    // Verificar se o item já existe no DOM
     if (!document.getElementById(enc.id)) {
       const li = document.createElement("li");
       li.className = "draggable";
@@ -43,8 +69,13 @@ function renderEncomendas() {
       li.innerHTML = `<strong>${enc.cliente}</strong><br>${enc.rua}, ${enc.cidade} (${enc.pais})<br><em>${enc.peso} kg</em>`;
       li.addEventListener("dragstart", dragStart);
       lista.appendChild(li);
+      console.log("Encomenda adicionada ao DOM:", li);
+    } else {
+      console.log("Encomenda já existe no DOM:", enc.id);
     }
   });
+
+  console.log("Renderização de encomendas concluída.");
 }
 
 function criarPalete() {
@@ -106,11 +137,11 @@ function updatePeso(paleteDiv, lista) {
 }
 
 function guardarPaletes() {
-  localStorage.setItem("paletesCriadas", JSON.stringify(paletes));
+  IndexedDB.setItem("paletesCriadas", JSON.stringify(paletes));
 }
 
 function restaurarPaletes() {
-  const armazenadas = JSON.parse(localStorage.getItem("paletesCriadas")) || [];
+  const armazenadas = JSON.parse(IndexedDB.getItem("paletesCriadas")) || [];
   armazenadas.forEach((p, index) => {
     criarPalete(); // recria estrutura
     const ul = document.querySelector(`[data-palete="${index}"] ul`);
@@ -123,24 +154,48 @@ function restaurarPaletes() {
   });
 }
 
+// Exemplo de função openRotasApp no arquivo gestaoderotas.js
+function openRotasApp(appName) {
+  const appContainer = document.getElementById(`window-${appName}`);
+  if (!appContainer) {
+    // Carregar o HTML do aplicativo dinamicamente
+    fetch(`apps/${appName}.html`)
+      .then((response) => response.text())
+      .then((html) => {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+        document.body.appendChild(div);
+      });
+  }
+}
+
 window.onload = function () {
   console.log("Iniciando aplicação...");
-  
-  // Verificar encomendas no localStorage
-  encomendas = JSON.parse(localStorage.getItem("encomendasPendentes")) || [];
-  console.log("Encomendas carregadas do localStorage:", encomendas);
+
+  // Verificar encomendas no IndexedDB
+  encomendas = JSON.parse(IndexedDB.getItem("encomendasPendentes")) || [];
+  console.log("Encomendas carregadas do IndexedDB:", encomendas);
 
   // Gerar encomendas se não houver nenhuma
   if (encomendas.length === 0) {
     console.log("Nenhuma encomenda encontrada. Gerando novas encomendas...");
     gerarEncomendas();
-    localStorage.setItem("encomendasPendentes", JSON.stringify(encomendas));
-    console.log("Encomendas geradas e salvas no localStorage:", encomendas);
-  }
+    console.log("Encomendas geradas:", encomendas);
 
-  // Renderizar encomendas
-  renderEncomendas();
-  console.log("Encomendas renderizadas.");
+    // Salvar no IndexedDB
+    IndexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
+    console.log("Encomendas salvas no IndexedDB:", encomendas);
+
+    // Renderizar encomendas
+    renderEncomendas();
+    console.log("Encomendas renderizadas após geração.");
+  } else {
+    console.log("Encomendas já carregadas do IndexedDB:", encomendas);
+
+    // Renderizar encomendas
+    renderEncomendas();
+    console.log("Encomendas renderizadas após carregamento.");
+  }
 
   // Restaurar paletes
   restaurarPaletes();

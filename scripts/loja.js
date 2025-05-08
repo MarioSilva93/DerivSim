@@ -13,9 +13,9 @@ const vehicles = [
 
 
 function comprarVeiculo(v) {
-  let lista = JSON.parse(localStorage.getItem("meusVeiculos")) || [];
+  let lista = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
   lista.push(v);
-  localStorage.setItem("meusVeiculos", JSON.stringify(lista));
+  IndexedDB.setItem("meusVeiculos", JSON.stringify(lista));
   alert("Veículo comprado: " + v.model);
 }
 
