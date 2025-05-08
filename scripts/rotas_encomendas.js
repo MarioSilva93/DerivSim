@@ -124,11 +124,25 @@ function restaurarPaletes() {
 }
 
 window.onload = function () {
+  console.log("Iniciando aplicação...");
+  
+  // Verificar encomendas no localStorage
   encomendas = JSON.parse(localStorage.getItem("encomendasPendentes")) || [];
+  console.log("Encomendas carregadas do localStorage:", encomendas);
+
+  // Gerar encomendas se não houver nenhuma
   if (encomendas.length === 0) {
+    console.log("Nenhuma encomenda encontrada. Gerando novas encomendas...");
     gerarEncomendas();
     localStorage.setItem("encomendasPendentes", JSON.stringify(encomendas));
+    console.log("Encomendas geradas e salvas no localStorage:", encomendas);
   }
+
+  // Renderizar encomendas
   renderEncomendas();
+  console.log("Encomendas renderizadas.");
+
+  // Restaurar paletes
   restaurarPaletes();
+  console.log("Paletes restauradas.");
 };
