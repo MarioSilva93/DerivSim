@@ -3,8 +3,8 @@ function atualizarLista() {
   const container = document.getElementById("workerList");
   container.innerHTML = "";
 
-  const trabalhadores = JSON.parse(IndexedDB.getItem("meusTrabalhadores")) || [];
-  const veiculos = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
+  const trabalhadores = JSON.parse(indexedDB.getItem("meusTrabalhadores")) || [];
+  const veiculos = JSON.parse(indexedDB.getItem("meusVeiculos")) || [];
 
   trabalhadores.forEach((t, i) => {
     const div = document.createElement("div");
@@ -29,8 +29,8 @@ function atualizarLista() {
 }
 
 function vincular(tIndex, vIndex) {
-  const trabalhadores = JSON.parse(IndexedDB.getItem("meusTrabalhadores")) || [];
-  const veiculos = JSON.parse(IndexedDB.getItem("meusVeiculos")) || [];
+  const trabalhadores = JSON.parse(indexedDB.getItem("meusTrabalhadores")) || [];
+  const veiculos = JSON.parse(indexedDB.getItem("meusVeiculos")) || [];
 
   veiculos.forEach(v => {
     if (v.trabalhador === trabalhadores[tIndex].nome) {
@@ -42,7 +42,7 @@ function vincular(tIndex, vIndex) {
     veiculos[vIndex].trabalhador = trabalhadores[tIndex].nome;
   }
 
-  IndexedDB.setItem("meusVeiculos", JSON.stringify(veiculos));
+  indexedDB.setItem("meusVeiculos", JSON.stringify(veiculos));
   atualizarLista();
 }
 

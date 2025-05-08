@@ -1,4 +1,4 @@
-function abrirIndexedDB() {
+function abririndexedDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("JogoLogistica", 1);
 
@@ -15,12 +15,12 @@ function abrirIndexedDB() {
     };
 
     request.onsuccess = function (event) {
-      console.log("IndexedDB aberto com sucesso.");
+      console.log("indexedDB aberto com sucesso.");
       resolve(event.target.result);
     };
 
     request.onerror = function (event) {
-      console.error("Erro ao abrir IndexedDB:", event.target.error);
+      console.error("Erro ao abrir indexedDB:", event.target.error);
       reject(event.target.error);
     };
   });

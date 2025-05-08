@@ -17,9 +17,9 @@ function gerarAleatorio() {
 }
 
 function contratar(t) {
-  let contratados = JSON.parse(IndexedDB.getItem("meusTrabalhadores")) || [];
+  let contratados = JSON.parse(indexedDB.getItem("meusTrabalhadores")) || [];
   contratados.push(t);
-  IndexedDB.setItem("meusTrabalhadores", JSON.stringify(contratados));
+  indexedDB.setItem("meusTrabalhadores", JSON.stringify(contratados));
   alert(t.nome + " foi contratado com sucesso!");
 }
 

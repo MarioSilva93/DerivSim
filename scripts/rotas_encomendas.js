@@ -39,9 +39,9 @@ function gerarEncomendas(qtd = 20) {
     encomendas.push(encomenda);
   }
 
-  console.log("Encomendas antes de salvar no IndexedDB:", encomendas);
-  IndexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
-  console.log("Encomendas salvas no IndexedDB:", IndexedDB.getItem("encomendasPendentes"));
+  console.log("Encomendas antes de salvar no indexedDB:", encomendas);
+  indexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
+  console.log("Encomendas salvas no indexedDB:", indexedDB.getItem("encomendasPendentes"));
 }
 
 function renderEncomendas() {
@@ -137,11 +137,11 @@ function updatePeso(paleteDiv, lista) {
 }
 
 function guardarPaletes() {
-  IndexedDB.setItem("paletesCriadas", JSON.stringify(paletes));
+  indexedDB.setItem("paletesCriadas", JSON.stringify(paletes));
 }
 
 function restaurarPaletes() {
-  const armazenadas = JSON.parse(IndexedDB.getItem("paletesCriadas")) || [];
+  const armazenadas = JSON.parse(indexedDB.getItem("paletesCriadas")) || [];
   armazenadas.forEach((p, index) => {
     criarPalete(); // recria estrutura
     const ul = document.querySelector(`[data-palete="${index}"] ul`);
@@ -172,9 +172,9 @@ function openRotasApp(appName) {
 window.onload = function () {
   console.log("Iniciando aplicação...");
 
-  // Verificar encomendas no IndexedDB
-  encomendas = JSON.parse(IndexedDB.getItem("encomendasPendentes")) || [];
-  console.log("Encomendas carregadas do IndexedDB:", encomendas);
+  // Verificar encomendas no indexedDB
+  encomendas = JSON.parse(indexedDB.getItem("encomendasPendentes")) || [];
+  console.log("Encomendas carregadas do indexedDB:", encomendas);
 
   // Gerar encomendas se não houver nenhuma
   if (encomendas.length === 0) {
@@ -182,15 +182,15 @@ window.onload = function () {
     gerarEncomendas();
     console.log("Encomendas geradas:", encomendas);
 
-    // Salvar no IndexedDB
-    IndexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
-    console.log("Encomendas salvas no IndexedDB:", encomendas);
+    // Salvar no indexedDB
+    indexedDB.setItem("encomendasPendentes", JSON.stringify(encomendas));
+    console.log("Encomendas salvas no indexedDB:", encomendas);
 
     // Renderizar encomendas
     renderEncomendas();
     console.log("Encomendas renderizadas após geração.");
   } else {
-    console.log("Encomendas já carregadas do IndexedDB:", encomendas);
+    console.log("Encomendas já carregadas do indexedDB:", encomendas);
 
     // Renderizar encomendas
     renderEncomendas();

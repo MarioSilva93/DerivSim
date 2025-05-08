@@ -7,12 +7,12 @@ function register() {
     return;
   }
 
-  if (IndexedDB.getItem("user_" + username)) {
+  if (indexedDB.getItem("user_" + username)) {
     alert("Este utilizador já existe.");
     return;
   }
 
-  IndexedDB.setItem("user_" + username, password);
+  indexedDB.setItem("user_" + username, password);
   alert("Conta criada com sucesso! Pode fazer login.");
   window.location.href = "login.html";
 }
