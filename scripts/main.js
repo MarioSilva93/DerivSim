@@ -1,5 +1,5 @@
 function salvarDados(storeName, data) {
-  abririndexedDB().then((db) => {
+  abrirIndexedDB().then((db) => {
     const transaction = db.transaction(storeName, "readwrite");
     const store = transaction.objectStore(storeName);
 
@@ -19,7 +19,7 @@ function salvarDados(storeName, data) {
 
 function carregarDados(storeName) {
   return new Promise((resolve, reject) => {
-    abririndexedDB().then((db) => {
+    abrirIndexedDB().then((db) => {
       const transaction = db.transaction(storeName, "readonly");
       const store = transaction.objectStore(storeName);
       const request = store.getAll();
@@ -38,7 +38,7 @@ function carregarDados(storeName) {
 }
 
 function excluirDados(storeName, id) {
-  abririndexedDB().then((db) => {
+  abrirIndexedDB().then((db) => {
     const transaction = db.transaction(storeName, "readwrite");
     const store = transaction.objectStore(storeName);
     const request = store.delete(id);
@@ -59,10 +59,8 @@ salvarDados("encomendas", [
   { id: "e2", cliente: "Sofia", rua: "Rua B", cidade: "Porto", pais: "Portugal", peso: 15 },
 ]);
 
-// Exemplo de uso
 carregarDados("encomendas").then((encomendas) => {
   console.log("Encomendas carregadas:", encomendas);
 });
 
-// Exemplo de uso
 excluirDados("encomendas", "e1");
