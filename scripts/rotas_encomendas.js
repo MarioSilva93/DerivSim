@@ -1,7 +1,4 @@
-console.log("Script rotas_encomendas.js carregado com sucesso!");
-
 const nomes = ["Carlos", "Sofia", "Miguel", "Anna", "Luc", "João", "Emma", "Pierre", "Marta", "Hans"];
-const peso = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const moradas = [
   { rua: "Willikonerstrasse 40", cidade: "Oetwil am See", pais: "Suíça" },
   { rua: "Avenida da Liberdade 210", cidade: "Lisboa", pais: "Portugal" },
@@ -45,7 +42,6 @@ function gerarEncomendas(qtd = 20) {
 }
 
 function renderEncomendas() {
-  console.log("Função renderEncomendas chamada");
   const lista = document.getElementById("encomendas-list");
   if (!lista) {
     console.error("Elemento #encomendas-list não encontrado no DOM!");
@@ -74,21 +70,6 @@ function renderEncomendas() {
       console.log("Encomenda já existe no DOM:", enc.id);
     }
   });
-
-  console.log("Renderização de encomendas concluída.");
-}
-
-function criarPalete() {
-  const container = document.getElementById("paletes-container");
-  const div = document.createElement("div");
-  div.className = "palete droppable";
-  div.dataset.palete = paletes.length;
-  div.innerHTML = `<h4>Palete ${paletes.length + 1}</h4><ul></ul><p><strong>Total: <span>0</span> kg</strong></p>`;
-  div.addEventListener("dragover", allowDrop);
-  div.addEventListener("drop", drop);
-  container.appendChild(div);
-  paletes.push([]);
-  guardarPaletes();
 }
 
 function dragStart(event) {
